@@ -1,0 +1,55 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+body{
+    font-size: 18px;
+    font-family: 'Noto Sans KR', sans-serif;;
+}
+
+
+.blind {
+    width: 0;
+    height: 0;
+    text-indent: -9999px;
+    padding: 0;
+    margin: 0;
+    visibility: hidden;
+}
+
+button{
+    background: none;
+    border: none;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+@font-face {
+    font-family: 'TTBlackroseR';
+    src: url(/font/TTBlackroseR.woff);
+}
+
+
+
+body{
+    font-size: 16px;
+}
+
+:root {
+	--fn-sans: 'Noto Sans KR', sans-serif;
+    --fn-rose: 'TTBlackroseR';
+}
+
+.blind {
+    width: 0;
+    height: 0;
+    text-indent: -9999px;
+    padding: 0;
+    margin: 0;
+    visibility: hidden;
+}
+
+button{
+    background: none;
+    border: none;
+}
