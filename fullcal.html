@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="/css/fullcalendar/main.css" rel="stylesheet" type="text/css">
+    <link href="/css/fullcalendar/daygrid.css" rel="stylesheet" type="text/css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="cal-wrap">
+        <div id="calendar"></div>
+    </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                    var calendarEl = document.getElementById('calendar');
+                    
+                    var calendar = new FullCalendar.Calendar(calendarEl, {
+                        plugins: [ 'interaction', 'dayGrid', 'timeGrid'],
+                        header: {
+                            left: 'title',
+                            center: '',
+                            right: 'prev, title, next'
+                        },
+                        columnHeaderText: function (date) {
+                            let weekList = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+                            return weekList[date.getDay()];
+                        },
+                        titleFormat: function (date) {
+                            return `${date.date.year}. ${date.date.month + 1}.`;
+                        },
+                        DateTimeFormat: 'numeric',
+                        firstDay: 1,
+                        contentHeight: 962,
+                        eventClick: function(info) {
+                        var eventObj = info.event;
+                        if (eventObj.url) {
+                            alert(
+                            eventObj.title +
+                            + eventObj.url
+                            );
+                            window.open(eventObj.url);
+                            info.jsEvent.preventDefault(); // prevents browser from following link in current tab.
+                        } else {
+                            alert('Clicked ' + eventObj.title);
+                        }
+                        },
+                        initialDate: '2022-11-14',
+                        events: [
+                        {
+                            title: '신청완료',
+                            start: '2022-11-14',
+                            textColor: '#9d9d9d',
+                            borderColor: '#9d9d9d'
+                        },
+                        {
+                            title: '신청가능',
+                            url: '',
+                            start: '2022-11-15',
+                            textColor: '#00b430',
+                            borderColor: '#00b430'
+                        }
+                        ]
+                    });
+                    calendar.render();
+                });
+                
+        </script>
+        <script src="/js/fullcalendar/main.js"></script>
+        <script src="/js/fullcalendar/calender.js"></script>
+        <script src="/js/fullcalendar/daygrid.js"></script>
+        <script src="/js/fullcalendar/interaction.js"></script>
+</body>
+</html>
