@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/reset.css">
+    <title>Document</title>
+    <style>
+    .tab-item.active {
+        background: #277ed2;
+        color: #fff;
+        }
+
+    .tab-inner.active {
+        display: block;
+    }
+    .tab-inner {
+        display: none;
+        width: 100%;
+        height: 100%;
+        border: solid 1px rgba(0, 0, 0, 0.1);
+    }
+    .tab{
+        display: flex;
+    }
+    .tab-tit input[type="radio"]{
+        display:none;
+    }
+    .tab-tit input[type="radio"] + span{
+        display:inline-block;
+        background:none;
+        padding:0px 10px;
+        text-align:center;
+        height:35px;
+        line-height:33px;
+        font-weight:500;
+        cursor:pointer;
+    }
+    .tab-tit input[type="radio"]:checked + span{
+        border: 0;
+        background:#23a3a7;
+        color:#fff;
+    }
+
+    /* 아코디언 */
+    .list.active .desc {
+        display: block;
+    }
+    .stu-file{
+        width: 100%;
+        height: 100%;
+    }
+    .inner{
+        width: 100%;
+        height: 600px;
+        overflow-y: scroll;
+    }
+    .inner::-webkit-scrollbar{
+        width: 2px;
+        background: transparent;
+    }
+    .inner::-webkit-scrollbar-thumb{
+        background: #707070;
+    }
+    .list-tit{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 4px 35px;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+
+    .desc {
+        display: none;
+        padding: 20.8px 60px 46.3px 35px;
+        /* overflow: hidden; */
+        /* transition: all 1s; */
+        transition:height 1s ease-out;
+        /* height:0; */
+        overflow:hidden;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    </style>
+</head>
+<body>
+    <div class="tab-menu pro-lec student">
+        <div class="tab-menu-wrap">
+            <ul class="tab">
+                <li class="tab-item active">
+                    <label class="tab-tit"><input type="radio" name="cp_item" value="옵션1" checked="checked"><span>옵션1</span></label>
+                </li>
+                <li class="tab-item">
+                    <label class="tab-tit"><input type="radio" name="cp_item" value="옵션2"><span>옵션2</span></label>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-inner-wrap">
+            <div class="tab-inner active">
+                내용
+            </div>
+            <div class="tab-inner">
+                <div class="wrap">
+                    <div class="inner">
+                        <ul class="item">
+                            <li class="list">
+                                <div class="list-tit">
+                                    <p class="tit">제목</p>
+                                </div>
+                                <div class="desc">내용</div>
+                            </li>
+                            <li class="list">
+                                <div class="list-tit">
+                                    <p class="tit">제목</p>
+                                </div>
+                                <div class="desc">내용</div>
+                            </li>
+                            <li class="list">
+                                <div class="list-tit">
+                                    <p class="tit">제목</p>
+                                </div>
+                                <div class="desc">내용</div>
+                            </li>
+                            <li class="list">
+                                <div class="list-tit">
+                                    <p class="tit">제목</p>
+                                </div>
+                                <div class="desc">내용</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+    <script>
+        // 탭
+        const tabItem = document.querySelectorAll('.tab-item')
+        const tabInner = document.querySelectorAll('.tab-inner')
+
+        tabItem.forEach((tab, idx)=> {
+            tab.addEventListener('click', function(){
+                tabInner.forEach((inner)=> {
+                    inner.classList.remove('active')
+                })
+
+                tabItem.forEach((item)=> {
+                    item.classList.remove('active')
+                })
+
+                tabItem[idx].classList.add('active')
+                tabInner[idx].classList.add('active')
+            })
+        })
+
+        // 아코디언
+        const questions = document.querySelectorAll(".list")
+
+        questions.forEach(function(question) {
+            question.addEventListener("click", function() {
+                questions.forEach(function(item) {
+                    if (item !== question) {
+                        item.classList.remove("active");
+                    }
+                })
+                question.classList.toggle("active");
+            })
+        })
+    </script>
+</html>
